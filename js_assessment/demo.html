@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Validation Form</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h2>Validation Form</h2>
+    <form onsubmit="return validateForm()">
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+        </div>
+        <div>
+            <label for="retypePassword">Re-type Password:</label>
+            <input type="password" id="retypePassword" required>
+        </div>
+        <div>
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" required>
+        </div>
+        <div>
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" required>
+        </div>
+        <div>
+            <label>Gender:</label>
+            <input type="radio" name="gender" value="male" required> Male
+            <input type="radio" name="gender" value="female" required> Female
+        </div>
+        <div>
+            <label for="country">Select Country:</label>
+            <select id="country" required>
+                <option value="">-- Select Country --</option>
+                <option value="USA">USA</option>
+                <option value="Canada">Canada</option>
+                <option value="UK">UK</option>
+                <!-- Add more country options here -->
+            </select>
+        </div>
+        <div>
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+
+    <script>
+        function validateForm() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const retypePassword = document.getElementById("retypePassword").value;
+            const firstName = document.getElementById("firstName").value;
+            const lastName = document.getElementById("lastName").value;
+            const gender = document.querySelector('input[name="gender"]:checked');
+            const country = document.getElementById("country").value;
+
+            // Regular expression for email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailRegex.test(email)) {
+                alert("Invalid email format");
+                return false;
+            }
+
+            if (password !== retypePassword) {
+                alert("Passwords do not match");
+                return false;
+            }
+
+            if (!gender) {
+                alert("Please select a gender");
+                return false;
+            }
+
+            if (country === "") {
+                alert("Please select a country");
+                return false;
+            }
+
+            // You can add more specific validation rules as per your requirements
+            // For example, checking password strength, etc.
+
+            return true;
+        }
+    </script>
+</body>
+</html>
